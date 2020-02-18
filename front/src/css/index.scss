@@ -87,17 +87,65 @@ body {
     overflow: hidden;
 
     .news-wrapper {
+
+      $bannerWidth: $mainBoxWidth;
+      $bannerHeight: 202px;
+
       float: left;
-      width: 798px;
+      width: $mainBoxWidth;
       height: 500px;
-      background: red;
+      background: #ffffff;
+
+      .banner-group {
+        width: 100%;
+        height: $bannerHeight;
+        background: red;
+        position: relative;
+
+        .banner-ul {
+          overflow: hidden;
+          width: $bannerWidth*4;
+          position: absolute;
+          left: 0;
+
+          li {
+            float: left;
+            width: $bannerWidth;
+            height: $bannerHeight;
+
+            img{
+              width: $bannerWidth;
+              height: $bannerHeight;
+            }
+          }
+        }
+
+        .arrow {
+          font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+          font-size: 70px;
+          color: #ffffff;
+          position: absolute;
+          top: 50%;
+          margin-top: -45px;
+          cursor: pointer;
+          display: none;
+        }
+
+        .left-arrow {
+          left: 20px;
+        }
+
+        .right-arrow {
+          right: 20px;
+        }
+      }
     }
 
     .sidebar-wrapper {
       float: right;
-      width: 356px;
+      width: $sidebarWidth;
       height: 500px;
-      background: yellow;
+      background: darkseagreen;
     }
   }
 }

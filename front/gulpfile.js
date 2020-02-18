@@ -38,6 +38,7 @@ gulp.task("css", function () {
 gulp.task("js", function () {
     gulp.src(path.js + '*.js')
         .pipe(uglify())
+        .pipe(rename({"suffix": ".min"}))
         .pipe(gulp.dest(path.js_dist))
         .pipe(bs.stream)
 });
