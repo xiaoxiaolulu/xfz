@@ -10,6 +10,10 @@ body {
   width: 100%;
   height: $navHeight;
   background: #3a3a3a;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
 
   .container {
     width: $pageWidth;
@@ -67,6 +71,33 @@ body {
       a {
         color:#ffffff;
       }
+    }
+  }
+}
+
+.main {
+  width: 100%;
+  margin-top: $navHeight + 20px;
+
+  .wrapper {
+    width: $pageWidth;
+    margin: 0 auto;
+    background: green;
+    height: 1000px;
+    overflow: hidden;
+
+    .news-wrapper {
+      float: left;
+      width: 798px;
+      height: 500px;
+      background: red;
+    }
+
+    .sidebar-wrapper {
+      float: right;
+      width: 356px;
+      height: 500px;
+      background: yellow;
     }
   }
 }
