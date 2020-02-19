@@ -13,6 +13,14 @@ body {
     width: $pageWidth;
     margin: 0 auto;
     overflow: hidden;
+
+    .main-content-wrapper {
+
+      float: left;
+      width: $mainBoxWidth;
+      background: #ffffff;
+
+    }
   }
 }
 

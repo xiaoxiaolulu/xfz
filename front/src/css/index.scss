@@ -11,13 +11,6 @@
 
     .main-content-wrapper {
 
-      $bannerWidth: $mainBoxWidth;
-      $bannerHeight: 202px;
-
-      float: left;
-      width: $mainBoxWidth;
-      background: #ffffff;
-
       .banner-group {
         width: 100%;
         height: $bannerHeight;
