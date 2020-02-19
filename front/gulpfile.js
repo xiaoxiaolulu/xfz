@@ -7,6 +7,9 @@ var cache = require("gulp-cache");
 var imagemin = require("gulp-imagemin");
 var bs = require("browser-sync").create();
 var sass = require("gulp-sass-china");
+var util = require("gulp-util");
+var sourcemaps = require("gulp-sourcemaps");
+
 
 var path  = {
     'html': './templates/**/',
@@ -37,8 +40,10 @@ gulp.task("css", function () {
 // 定义js文件任务
 gulp.task("js", function () {
     gulp.src(path.js + '*.js')
-        .pipe(uglify())
+        // .pipe(sourcemaps.init())
+        // .pipe(uglify().on("error", util.log))
         .pipe(rename({"suffix": ".min"}))
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.js_dist))
         .pipe(bs.stream)
 });
