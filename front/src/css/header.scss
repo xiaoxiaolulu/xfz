@@ -1,0 +1,72 @@
+@import "init.scss";
+@import "constants.scss";
+
+.header {
+  width: 100%;
+  height: $navHeight;
+  background: #3a3a3a;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+
+  .container {
+    width: $pageWidth;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .log-box {
+      width: 140px;
+      height: 54px;
+      background: url("https://www.xfz.cn/static/build/images/logo.png") no-repeat;
+      margin-top: 8px;
+      float: left;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .nav {
+      margin-left: 128px;
+      float: left;
+
+      li {
+        float: left;
+        margin-right: 40px;
+        line-height: $navHeight;
+        height: $navHeight;
+        box-sizing: border-box;
+
+        a {
+          color: #ffffff;
+        }
+
+        &.active {
+          border-bottom: 5px solid $themeColor;
+        }
+      }
+
+    }
+
+    .auth-box {
+      float: right;
+      line-height: $navHeight;
+      height: $navHeight;
+      font-size: 14px;
+
+      .iconfont {
+        color: #ffffff;
+        font-size: 20px;
+      }
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}

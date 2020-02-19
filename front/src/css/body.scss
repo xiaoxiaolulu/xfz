@@ -1,0 +1,166 @@
+@import "constants.scss";
+
+body {
+  background: #f2f2f2;
+}
+
+
+.main {
+  width: 100%;
+  margin-top: $navHeight + 20px;
+
+  .wrapper {
+    width: $pageWidth;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+}
+
+
+.main {
+  .wrapper {
+
+    .sidebar-wrapper {
+      float: right;
+      width: $sidebarWidth;
+      background: #ffffff;
+
+      .title-group {
+        padding: 20px;
+        overflow: hidden;
+
+        .title {
+          float: left;
+          font-size: 18px;
+          color: #212121;
+        }
+
+        .more {
+          float: right;
+          font-size: 14px;
+          color: $themeColor;
+        }
+      }
+
+      .advertise-group {
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .focus-group {
+        padding: 0 20px;
+        overflow: hidden;
+
+        .left-group {
+          width: 180px;
+          float: left;
+
+          li {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background: url("https://www.xfz.cn/static/build/images/side-icon.png");
+            background-repeat: no-repeat;
+            background-size: 26%;
+            margin-bottom: 20px;
+            overflow: hidden;
+
+            a {
+              float: left;
+              margin-left: 64px;
+              color: #878787;
+              font-size: 14px;
+            }
+          }
+
+          .zhihu {
+            background-position: 0 0;
+          }
+
+          .weibo {
+            background-position: 0 -63px;
+          }
+
+          .toutiao {
+            background-position: 0 -122px;
+          }
+        }
+
+        .right-group {
+          float: right;
+          width: 100px;
+          background: url("https://www.xfz.cn/static/build/images/xfz-school-wechat-share.png");
+          background-repeat: no-repeat;
+          background-size: 100%;
+
+          .desc {
+            margin-top: 100px;
+            color: #878787;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .hot-news-group {
+
+        .hot-list-group {
+
+          li {
+            padding: 0 20px 20px;
+            overflow: hidden;
+            border-bottom: 1px solid #eeeeee;
+
+            .left-group {
+              float: left;
+              width: 204px;
+              height: 72px;
+              position: relative;
+
+              .title {
+                font-size: 16px;
+
+                a {
+                  color: $mainFontColor;
+                  &:hover {
+                    color: $themeColor;
+                  }
+                }
+              }
+
+              .more {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                font-size: 12px;
+
+                .category {
+                  color: $themeColor;
+                  float: left;
+                }
+
+                .pub-time {
+                  float: right;
+                  color: $assistFontColor;
+                }
+              }
+            }
+
+            .right-group {
+              float: right;
+              width: 102px;
+              height: 72px;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

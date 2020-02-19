@@ -1,0 +1,130 @@
+@import "constants.scss";
+
+
+.footer {
+  font-size: 14px;
+  color: #c9c9c9;
+  margin-top: 20px;
+
+  .top-group {
+    background: #555e67;
+    height: 100px;
+    padding-top: 26px;
+    box-sizing: border-box;
+
+    .top-inner-group {
+      width: $pageWidth;
+      margin: 0 auto;
+      //overflow: hidden;
+      position: relative;
+
+      .log-box {
+        width: 168px;
+        height: 54px;
+        float: left;
+        background: url("https://www.xfz.cn/static/build/images/logo.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+
+      .detail-group {
+        float: left;
+        margin-left: 84px;
+
+        .line1 {
+          overflow: hidden;
+
+          .links {
+            float: left;
+            overflow: hidden;
+
+            li {
+              float: left;
+              padding: 0 10px;
+              border-right: 1px solid #c9c9c9;
+
+              a {
+                color: #c9c9c9;
+              }
+
+              &:first-of-type {
+                padding-left: 0;
+              }
+
+              &:last-of-type {
+                border-right: none;
+              }
+            }
+          }
+          .about-us {
+            float: left;
+            margin-left: 40px;
+
+            .title {
+              float: left;
+            }
+
+            .social-group {
+              overflow: hidden;
+              float: left;
+
+              .weixin {
+                background: url("https://www.xfz.cn/static/build/images/wx-icon.png");
+                background-repeat: no-repeat;
+                background-size: 30%;
+                cursor: pointer;
+
+                &:hover .wx-qrcode {
+                  display: block;
+                }
+
+                .text {
+                  margin-left: 24px;
+                  color: #ffffff;
+                }
+
+                .wx-qrcode {
+                  width: 200px;
+                  height: 400px;
+                  background: url("https://xfz.cn/static/build/images/xfz-school-wechat-share.png");
+                  background-repeat: no-repeat;
+                  background-size: 100%;
+                  position: absolute;
+                  right: 360px;
+                  top: -200px;
+                  display: none;
+
+                }
+              }
+
+              li {
+                float: left;
+              }
+            }
+          }
+        }
+
+        .line2 {
+          overflow: hidden;
+          margin-top: 20px;
+
+          .address {
+            float: left;
+          }
+          .contact {
+            float: left;
+            margin-left: 40px;
+          }
+
+        }
+      }
+    }
+  }
+
+  .bottom-group {
+    background: #383e44;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+  }
+}
