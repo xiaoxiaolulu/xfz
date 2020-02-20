@@ -3,50 +3,10 @@
 @import "../common/body";
 @import "../common/footer";
 @import "../common/constants";
+@import "../course/course_nav";
 
 
 .main {
-  margin-top: 64px;
-
-  .course-nav {
-    width: 100%;
-    height: $courseNavHeight;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
-
-    .nav-container {
-      width: $pageWidth;
-      margin: 0  auto;
-      height: $courseNavHeight;
-      line-height: $courseNavHeight;
-
-      h3.title {
-        float: left;
-        color: #696969;
-        font-size: 24px;
-      }
-
-      .nav-list {
-        float: left;
-        margin-left: 100px;
-
-        li {
-          float: left;
-          margin-right: 40px;
-
-          a {
-            color: #888;
-          }
-
-          &.active {
-            a {
-              color: $mainFontColor;
-            }
-          }
-        }
-      }
-
-    }
-  }
 
   .wrapper {
     .course-list {

@@ -1,0 +1,198 @@
+@import "../common/init";
+@import "../common/header";
+@import "../common/body";
+@import "../common/footer";
+@import "../common/constants";
+@import "../course/course_nav";
+
+.main {
+
+  .wrapper {
+    width: 1070px;
+    margin-top: 20px;
+
+    .course-wrapper {
+      background: #fff;
+
+      .course-info {
+        padding: 20px;
+
+        .course-title {
+          color: $mainFontColor;
+          font-size: 20px;
+        }
+
+        .price-group {
+          margin-top: 20px;
+          overflow: hidden;
+          line-height: $newsInfoHeight;
+
+          .share-group {
+            float: left;
+
+            span {
+              float: left;
+            }
+
+            .share-item {
+              background-image: url("https://www.xfz.cn/static/build/images/share.png");
+              background-size: 240%;
+              background-repeat: no-repeat;
+              float: left;
+              width: 28px;
+              height: 28px;
+            }
+
+            .weixin {
+              margin-left: 10px;
+            }
+
+            .weibo {
+              background-position: -39px 0;
+              margin-left: 10px;
+            }
+
+            .title {
+              font-size: 14px;
+              color: $assistFontColor;
+            }
+          }
+
+          .buy-group {
+            float: right;
+
+            .price {
+              font-size: 16px;
+            }
+
+            .free {
+              color: #7ed321;
+            }
+            .pay {
+              color: #f76363;
+            }
+            .buy-btn {
+              color: #fff;
+              background: #ff8d3f;
+              display: inline-block;
+              height: 40px;
+              width: 120px;
+              text-align: center;
+              line-height: 40px;
+              border-radius: 5px;
+              margin-left: 20px;
+            }
+          }
+        }
+      }
+
+      .video-group {
+        width: 100%;
+        height: 600px;
+        background: pink;
+      }
+    }
+
+    .bottom-group {
+      margin-top: 20px;
+      overflow: hidden;
+      .course-detail-wrapper {
+        float: left;
+        width: 700px;
+
+        .item-group {
+          background: #fff;
+          padding: 20px;
+
+          .item-title {
+            color: $mainFontColor;
+            font-size: 18px;
+            border-left: 5px solid $themeColor;
+            padding-left: 16px;
+          }
+          .teacher-group {
+            overflow: hidden;
+            margin-top: 20px;
+
+            .avatar-group{
+              float: left;
+              width: 60px;
+              height: 60px;
+
+              img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+
+              }
+            }
+            .teacher-info {
+              margin-left: 10px;
+              color: $assistFontColor;
+              float: left;
+
+              .teacher-desc {
+                margin-top: 10px;
+              }
+            }
+          }
+          .item-content {
+            margin-top: 20px;
+            color: rgb(68,68,68);
+            line-height: 1.8;
+          }
+        }
+      }
+      .recommand-wrapper {
+        width: 355px;
+        float: right;
+        background: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+
+        .recommand-title {
+          color: $mainFontColor;
+          font-size: 18px;
+        }
+
+        .course-list {
+          li {
+            overflow: hidden;
+            padding: 20px 0;
+
+            .course-info-group {
+              float: left;
+              width: 150px;
+              height: 90px;
+              position: relative;
+
+              .course-title {
+                font-size: 16px;
+                color: $mainFontColor;
+              }
+
+              .teacher {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                color: $assistFontColor;
+              }
+            }
+
+            .thumbnail-group {
+              float: right;
+              width: 160px;
+              height: 90px;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
