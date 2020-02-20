@@ -1,0 +1,115 @@
+@import "init.scss";
+@import "header.scss";
+@import "body.scss";
+@import "footer.scss";
+@import "constants.scss";
+
+
+.main {
+  margin-top: 64px;
+
+  .course-nav {
+    width: 100%;
+    height: $courseNavHeight;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+
+    .nav-container {
+      width: $pageWidth;
+      margin: 0  auto;
+      height: $courseNavHeight;
+      line-height: $courseNavHeight;
+
+      h3.title {
+        float: left;
+        color: #696969;
+        font-size: 24px;
+      }
+
+      .nav-list {
+        float: left;
+        margin-left: 100px;
+
+        li {
+          float: left;
+          margin-right: 40px;
+
+          a {
+            color: #888;
+          }
+
+          &.active {
+            a {
+              color: $mainFontColor;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .wrapper {
+    .course-list {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      li {
+        width: 278px;
+        height: $courseItemHeight;
+        color: #fff;
+        margin-bottom: 20px;
+
+        .thumbnail-group {
+          width: 100%;
+          height: $thumbnailHeight;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .course-info {
+          padding: 16px;
+          width: 100%;
+          box-sizing: border-box;
+          height: $courseItemHeight - $thumbnailHeight;
+          position: relative;
+
+          .title {
+            color: $mainFontColor;
+          }
+
+          .author {
+            margin-top: 10px;
+            color: $assistFontColor;
+            font-size: 14px;
+          }
+
+          .price-group {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            text-align: right;
+
+            .free {
+              color: rgb(126, 211, 33);
+            }
+
+            .pay {
+              color:  rgb(245, 74, 74);
+            }
+          }
+        }
+
+        &:hover {
+          box-shadow: 0 3px 14px rgb(0,0,0,0.1);
+        }
+      }
+    }
+  }
+}
