@@ -1,8 +1,8 @@
-@import "init.scss";
-@import "constants.scss";
-@import "header.scss";
-@import "body.scss";
-@import "footer.scss";
+@import "../common/init";
+@import "../common/constants";
+@import "../common/header";
+@import "../common/body";
+@import "../common/footer";
 
 
 .main {
