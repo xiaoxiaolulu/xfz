@@ -1,10 +1,11 @@
-from django.http import JsonResponse
-from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import login, logout, authenticate
 from django.views.decorators.http import require_POST
-
 from apps.core import Response
+from apps.core.captcha.xfzcaptcha import Captcha
 from apps.xfzauth.forms import LoginForm
+from io import BytesIO
 
 
 @require_POST
@@ -32,3 +33,19 @@ def login_view(request):
     else:
         errors = form.get_errors()
         return Response.params_error(message=errors)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('news:index'))
+
+
+def img_captcha(request):
+    text, image = Captcha.gene_code()
+    out = BytesIO()
+    image.save(out, 'png')
+    out.seek(0)
+    response = HttpResponse(content_type='image/png')
+    response.write(out.read())
+    response['Content-length'] = out.tell()
+    return response

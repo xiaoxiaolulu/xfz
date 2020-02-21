@@ -1,34 +1,40 @@
-@import "../common/constants";
-@import "../common/init";
+@import "constants.scss";
+@import "init.scss";
 
-body  {
+body{
   background: pink;
 }
 
-.mask-wrapper {
+
+
+.mask-wrapper{
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0,0,0,0.6);
   overflow-y: scroll;
   display: none;
+  z-index: 100;
 
-  .auth-wrapper {
-
-    $authWrapperHeight: 500px;
-    width: 400px;
+  .auth-wrapper{
+    $authWrapperHeight:540px;
+    $authWrapperWidth:400px;
+    width: $authWrapperWidth;
     height: $authWrapperHeight;
-    //background: #fff;
-    margin: 40px auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -$authWrapperWidth/2;
+    margin-top: -$authWrapperHeight/2;
 
-    .close-wrapper {
+    .close-wrapper{
       width: 100%;
       height: 40px;
       background: #fff;
 
-      .close-btn {
+      .close-btn{
         display: inline-block;
         width: 30px;
         height: 30px;
@@ -38,80 +44,75 @@ body  {
         cursor: pointer;
       }
     }
-
-    .auth-inner-wrapper {
+    .auth-inner-wrapper{
       width: 100%;
       height: $authWrapperHeight - 40px;
       position: relative;
+      overflow: hidden;
 
-      .scroll-wrapper {
-        width: 800px;
-        //height: 100%;
+      .scroll-wrapper{
+        width: $authWrapperWidth*2;
+        height: 100%;
         position: absolute;
         top: 0;
         left: 0;
 
-        .auth-group {
-          width: 400px;
-          height: 100%;
+        .auth-group{
+          width: $authWrapperWidth;
           padding: 20px;
           box-sizing: border-box;
 
-          .top-group {
+          .top-group{
             height: 36px;
-            border-bottom: 1px solid #eee;
-            line-height: 32px;
+            border-bottom: 1px solid $lineColor;
+            line-height: 33px;
 
-            .title {
+            .title{
               float: left;
               color: $mainFontColor;
               border-bottom: 3px solid $themeColor;
             }
-
-            .switch {
+            .switch{
               float: right;
               color: $themeColor;
             }
           }
 
-          .form-group {
+          .form-group{
             margin-top: 20px;
-            .input-group {
+            .input-group{
               margin-bottom: 20px;
               height: 40px;
 
-              .remember-label {
+              .remember-label{
                 font-size: 14px;
               }
 
-              .form-control {
+              .form-control{
                 border: 1px solid #ccc;
                 padding: 10px;
                 width: 100%;
-                box-sizing: border-box;
                 height: 40px;
+                box-sizing: border-box;
                 outline: none;
               }
-
-              .submit-btn {
+              .submit-btn{
                 width: 100%;
                 height: 40px;
                 background: $themeColor;
                 border: none;
-                color: #ffffff;
+                color: white;
                 cursor: pointer;
               }
-
-              .short-input-group {
+              .short-input-group{
                 width: 250px;
                 float: left;
               }
-
-              .input-group-addon {
+              .input-group-addon{
                 float: right;
                 width: 100px;
 
-                .sms-captcha-btn {
+                .sms-captcha-btn{
                   width: 100%;
                   height: 40px;
                   border: 1px solid $themeColor;
@@ -122,22 +123,25 @@ body  {
                   box-sizing: border-box;
                   cursor: pointer;
                 }
+                .disabled{
+                  color: #ccc;
+                  border-color: #ccc ;
+                }
               }
             }
           }
         }
 
-        .signin-group {
+        .signin-group{
           float: left;
-          background: #fff;
+          background: white;
         }
-
         .signup-group{
           float: left;
-          visibility: hidden;
-          background: #fff;
+          background: white;
         }
       }
+
     }
   }
 }

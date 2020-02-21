@@ -2,68 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1645680_gp5egnihb27.css">
+    <title>{% block title %}
+
+    {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/common/auth.min.css' %}">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1400321_uxicuszonwe.css">
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/message.min.js' %}"></script>
+    <script src="{% static 'js/xfzajax.min.js' %}"></script>
+    <script src="{% static 'js/front_base.min.js' %}"></script>
+{#    <script sec="{% static 'js/auth.min.js' %}"></script>#}
+
+
     {% block head %}
+
     {% endblock %}
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="log-box">
+            <div class="logo-box">
                 <a href="/"></a>
             </div>
+
             <ul class="nav">
                 <li class="active"><a href="/">创业资讯</a></li>
-                <li><a href="#">创业课堂</a></li>
-                <li><a href="#">付费资讯</a></li>
-                <li><a href="#">搜索</a></li>
+                <li><a href="{% url 'course:course_index' %}">创业课堂</a></li>
+                <li><a href="/">付费资讯</a></li>
+                <li><a href="/">搜索</a></li>
             </ul>
+
             <div class="auth-box">
-                <i class="icon-person iconfont"></i>
-                <a href="#">登录</a> /
-                <a href="#">注册</a>
+                <i class="icon-_huiyuanguanli iconfont"></i>
+                {% if user.is_authenticated %}
+                    <a href="#" class="authenticated-box">{{ user.username }}
+                    <div class="user-more-box">
+                        <i class="triangle"></i>
+                        {% if user.is_staff %}
+                           <a href="{% url 'cms:index' %}">管理系统</a>
+                        {% endif %}
+                        <a href="{% url 'xfzauth:logout' %}">退出登录</a>
+                    </div>
+                {% else %}
+                    <a href="#" class="signin-btn">登录</a> /
+                    <a href="#" class="signup-btn">注册</a>
+                {% endif %}
             </div>
         </div>
     </header>
-    {% block main %}
-    {% endblock %}
+
+    {% block main %}{% endblock %}
+
     <footer class="footer">
         <div class="top-group">
             <div class="top-inner-group">
-                <div class="log-box"></div>
+                <div class="logo-box"></div>
                 <div class="detail-group">
                     <div class="line1">
                         <ul class="links">
-                            <li><a href="">关于小饭桌</a></li>
-                            <li><a href="">创业课堂</a></li>
-                            <li><a href="">寻求报道</a></li>
-                            <li><a href="">创业礼包</a></li>
+                            <li><a href="#">关于小饭桌</a></li>
+                            <li><a href="#">创业课堂</a></li>
+                            <li><a href="#">寻求报道</a></li>
+                            <li><a href="#">创业礼包</a></li>
                         </ul>
                         <div class="about-us">
                             <span class="title">关于我们：</span>
-                            <ul class="social-group">
-                                <li class="weixin">
-                                    <div class="wx-qrcode"></div>
-                                    <span class="text">xfz008</span>
-                                </li>
-                            </ul>
+
                         </div>
                     </div>
                     <div class="line2">
-                        <p class="address">地址：北京市朝阳区东三环北路38号院泰康金融大厦</p>
-                        <p class="contact">呼叫热线：4008-100-300</p>
+                        <p class="address">
+                            地址：收到回复加快速度加
+                        </p>
+                        <p class="content">
+                            联系方式：44464646446
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </inner-group>
+        </div>
+        <div class="bottom-group">
+            ©2019 北京子木投资顾问有限公司 京ICP备15051289号 | 增值电信业务经营许可证：京B2-20170574
+        </div>
+    </footer>
+
+    <div class="mask-wrapper">
+        <div class="auth-wrapper">
+            <div class="close-wrapper">
+                <span class="close-btn icon-baseline-close-px iconfont"></span>
+            </div>
+            <div class="auth-inner-wrapper">
+                <div class="scroll-wrapper">
+                    <div class="signin-group auth-group">
+                        <div class="top-group">
+                            <span class="title">请登录</span>
+                            <a class="switch" href="javascript:void(0)">立即注册></a>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="telephone" placeholder="请输入手机号码">
+                            </div>
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                            </div>
+                            <div class="input-group">
+                                <label for="" class="remember-label">
+                                    <input type="checkbox" name="remember" value="0">记住我
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="submit-btn" value="立即登录">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="signup-group auth-group">
+                        <div class="top-group">
+                            <span class="title">请注册</span>
+                            <a class="switch" href="javascript:void(0)">立即登录></a>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="telephone" placeholder="手机号码">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="username" placeholder="用户名">
+                            </div>
+                            <div class="input-group">
+                                <div class="short-input-group">
+                                    <input type="text" class="form-control" name="img_captcha" placeholder="图形验证码">
+                                </div>
+                                <div class="input-group-addon">
+                                    <img style="cursor: pointer" class="img-captcha" src="{% url 'xfzauth:img_captcha' %}">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="password1" placeholder="密码">
+                            </div>
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="password2" placeholder="确认密码">
+                            </div>
+                            <div class="input-group">
+                                <div class="short-input-group">
+                                    <input type="text" class="form-control" name="sms_captcha" placeholder="短信验证码">
+                                </div>
+                                <div class="input-group-addon">
+                                    <span class="sms-captcha-btn">发送验证码</span>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="submit" class="submit-btn" value="立即注册">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="bottom-group">
-            ©2020 北京子木投资顾问有限公司 京ICP备15051289号 | 增值电信业务经营许可证：京B2-20170574
-        </div>
-    </footer>
+    </div>
 </body>
 </html>
