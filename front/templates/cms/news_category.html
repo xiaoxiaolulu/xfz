@@ -1,0 +1,39 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+    首页
+{% endblock %}
+{% block content-header %}
+    <h1>新闻分类</h1>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <button class="btn btn-primary pull-right">添加分类</button>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>名字</th>
+                                <th>新闻数量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>热点</td>
+                                <td>20</td>
+                                <td>
+                                    <button class="btn-warning btn-xs">编辑</button>
+                                    <button class="btn-danger btn-xs">删除</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

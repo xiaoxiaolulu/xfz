@@ -1,0 +1,53 @@
+{% extends 'cms/base.html' %}
+{% block title %}
+    发布新闻
+{% endblock %}
+{% block content-header %}
+    <h1>发布新闻</h1>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <form action="" class="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title-form">标题</label>
+                            <input type="text" class="form-control" name="title" id="title-form" placeholder="请输入标题">
+                        </div>
+                        <div class="form-group">
+                            <label for="category-form">分类</label>
+                            <select name="category" id="category-form" class="form-control">
+                                <option value="1">创业案例</option>
+                                <option value="2">热点</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc-form">描述信息</label>
+                            <input type="text" class="form-control" name="desc" id="desc-form" placeholder="请输入描述">
+                        </div>
+                        <div class="form-group">
+                            <label for="thumbnail-form">缩略图</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="thumbnail" id="thumbnail-form"
+                                       placeholder="请上传缩略图">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default">
+                                        上传图片
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content-form">内容</label>
+                            <textarea name="content" id="content-form" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary pull-right">发布</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
