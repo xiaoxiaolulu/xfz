@@ -36,7 +36,7 @@ Auth.prototype.run = function () {
     self.listenSignEvent()
     self.listenImgCaptchaEvent();
     self.listenSmsCaptchaEvent()
-    self.listenSignupEvent()
+    self.listenSignupEvent();
 };
 
 //登录事件
@@ -84,18 +84,18 @@ Auth.prototype.listenSignupEvent = function(){
 //验证码发送成功后事件
 Auth.prototype.smsSuccessEvent = function(){
     var self = this;
-    messageBox.showSuccess('短信验证码发送成功！')
+    messageBox.showSuccess('短信验证码发送成功！');
     self.smsCaptcha.addClass('disabled');
     var count = 60;
-    self.smsCaptcha.unbind('click')
+    self.smsCaptcha.unbind('click');
     var timer = setInterval(function () {
         self.smsCaptcha.text(count+'s');
         count--;
         if (count <= 0){
             clearInterval(timer);
             self.smsCaptcha.removeClass('disabled');
-            self.smsCaptcha.text('发送验证码')
-            self.listenSmsCaptchaEvent()
+            self.smsCaptcha.text('发送验证码');
+            self.listenSmsCaptchaEvent();
         }
      },1000)
 }
@@ -107,7 +107,7 @@ Auth.prototype.listenSmsCaptchaEvent = function(){
     self.smsCaptcha.click(function () {
         var telephone = telephoneInput.val();
         if(!telephone){
-            messageBox.showInfo('请输入手机号!')
+            messageBox.showInfo('请输入手机号!');
         }else{
             xfzajax.get({
             'url':'/account/sms_captcha/',
@@ -116,11 +116,11 @@ Auth.prototype.listenSmsCaptchaEvent = function(){
             },
             'success':function (result) {
                 if (result['code'] == 200){
-                    self.smsSuccessEvent()
+                    self.smsSuccessEvent();
                 }
             },
             'fail':function (error) {
-                console.log(error)
+                console.log(error);
             }
         })
         }
@@ -187,12 +187,12 @@ Auth.prototype.listenSignEvent = function(){
     var passwordInput = siginGroup.find("input[name='password']");
     var rememberInput = siginGroup.find("input[name='remember']");
 
-    var submitBtn = siginGroup.find(".submit-btn")
+    var submitBtn = siginGroup.find(".submit-btn");
 
     submitBtn.click(function () {
         var self = this;
-        var telephone = telephoneInput.val()
-        var password = passwordInput.val()
+        var telephone = telephoneInput.val();
+        var password = passwordInput.val();
         var remember = rememberInput.prop("checked");
 
         xfzajax.post({
