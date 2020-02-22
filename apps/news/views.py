@@ -1,9 +1,24 @@
 from django.shortcuts import render
+from apps.news.models import News, NewCategory
+from django.conf import settings
 
 
-# Create your views here.
 def index(request):
-    return render(request, 'news/index.html')
+    count = settings.ONE_PAGE_NEWS_COUNT
+    news = News.objects.order_by('-pub_time')[0: count]
+    categories = NewCategory.objects.all()
+    context = {
+        'news': news,
+        'categories': categories
+    }
+    return render(request, 'news/index.html', context=context)
+
+
+def new_list(request):
+    page = int(request.GET.get('p', 1))
+    start = (page-1) * settings.ONE_PAGE_NEWS_COUNT
+    end = start + settings.ONE_PAGE_NEWS_COUNT
+    news = News.objects.order_by('-pub_time')[start: end]
 
 
 def news_detail(request, news_id):

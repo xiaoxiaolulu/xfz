@@ -1,4 +1,5 @@
 {% extends 'base/front_base.html' %}
+{% load news_filters %}
 {% block title %}
     首页
 {% endblock %}
@@ -31,41 +32,29 @@
                 </div>
                 <div class="list-outer-group">
                     <ul class="list-tab">
-                        <li class="active"><a href="#">最新资源</a></li>
-                        <li><a href="#">热点</a></li>
-                        <li><a href="#">深度报道</a></li>
-                        <li><a href="#">干货分享</a></li>
-                        <li><a href="#">投资人说</a></li>
+                        {% for category in categories %}
+                            <li><a href="#">{{ category.name }}</a></li>
+                        {% endfor %}
                     </ul>
                     <ul class="list-inner-group">
-                        <li>
-                            <div class="thumbnail-group">
-                                <a href=""><img src="https://static-image.xfz.cn/1581983960_171.jpg-website.news.list" alt=""></a>
-                            </div>
-                            <div class="news-group">
-                                <a href=""><p class="title">早报：钟南山：峰值到不代表拐点到；蛋壳公寓致歉：不趁疫情发横财；苏宁启动无人车配送</p></a>
-                                <p class="desc">苏宁无人车</p>
-                                <p class="more">
-                                    <span class="category">深度报道</span>
-                                    <span class="pub-time">1小时前</span>
-                                    <span class="author">陪伴创业者成长的小饭桌</span>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumbnail-group">
-                                <a href=""><img src="https://static-image.xfz.cn/1582033917_373.png-website.news.list" alt=""></a>
-                            </div>
-                            <div class="news-group">
-                                <a href=""><p class="title">“疫期送药上门超300万次”“信息透明解决物资调配难题”丨互联网医疗企业战疫日记</p></a>
-                                <p class="desc">苏宁无人车</p>
-                                <p class="more">
-                                    <span class="category">深度报道</span>
-                                    <span class="pub-time">1小时前</span>
-                                    <span class="author">陪伴创业者成长的小饭桌</span>
-                                </p>
-                            </div>
-                        </li>
+                        {% for news in news %}
+                            <li>
+                                <div class="thumbnail-group">
+                                    <a href=""><img
+                                            src="{{ news.thumbnail }}"
+                                            alt=""></a>
+                                </div>
+                                <div class="news-group">
+                                    <a href=""><p class="title">{{ news.title }}</p></a>
+                                    <p class="desc">{{ news.desc }}</p>
+                                    <p class="more">
+                                        <span class="category">{{ news.category.name }}</span>
+                                        <span class="pub-time">{{ news.pub_time | time_since}}</span>
+                                        <span class="author">{{ news.author.username }}</span>
+                                    </p>
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                     <div class="load-more-group">
                         <button class="load-more">查看更多</button>
