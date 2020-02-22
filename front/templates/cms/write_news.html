@@ -2,6 +2,12 @@
 {% block title %}
     发布新闻
 {% endblock %}
+{% block head %}
+    <script src="https://unpkg.com/qiniu-js@2.5.2/dist/qiniu.min.js"></script>
+    <script src="{% static 'ueditor/ueditor.config.js' %}"></script>
+    <script src="{% static 'ueditor/ueditor.all.min.js' %}"></script>
+    <script src="{% static 'js/write_news.min.js' %}"></script>
+{% endblock %}
 {% block content-header %}
     <h1>发布新闻</h1>
 {% endblock %}
@@ -18,8 +24,9 @@
                         <div class="form-group">
                             <label for="category-form">分类</label>
                             <select name="category" id="category-form" class="form-control">
-                                <option value="1">创业案例</option>
-                                <option value="2">热点</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.pk }}">{{ category.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
@@ -32,19 +39,28 @@
                                 <input type="text" class="form-control" name="thumbnail" id="thumbnail-form"
                                        placeholder="请上传缩略图">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default">
+                                    <label for="" class="btn btn-default btn-file">
+                                        <input id="thumbnail-btn" hidden type="file" class="btn btn-default">
                                         上传图片
-                                    </button>
+                                    </label>
                                 </span>
                             </div>
                         </div>
                         <div class="form-group">
+                            <div id="progress-group" class="progress" style="display: none">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="content-form">内容</label>
-                            <textarea name="content" id="content-form" cols="30" rows="10" class="form-control"></textarea>
+                            <script id="editor" type="text/plain"></script>
                         </div>
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary pull-right">发布</button>
+                        <button id="submit-btn" type="submit" class="btn btn-primary pull-right">发布</button>
                     </div>
                 </form>
             </div>
