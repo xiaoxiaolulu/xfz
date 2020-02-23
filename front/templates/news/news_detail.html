@@ -1,4 +1,5 @@
 {% extends 'base/front_base.html' %}
+{% load news_filters %}
 {% block title %}
     新闻详情页
 {% endblock %}
@@ -10,12 +11,12 @@
         <div class="wrapper">
             <div class="main-content-wrapper">
                 <div class="news-wrapper">
-                    <h1 class="title">早报：钟南山：峰值到不代表拐点到；蛋壳公寓致歉：不趁疫情发横财；苏宁启动无人车配送</h1>
+                    <h1 class="title">{{ news.title }}</h1>
                     <div class="news-info">
                         <div class="info-group">
-                            <span class="author"> 柴容</span>
-                            <span class="pub-time">02月18日</span>
-                            <span class="category">热点</span>
+                            <span class="author">{{ news.author.username }}</span>
+                            <span class="pub-time">{{ news.pub_time | time_since}}</span>
+                            <span class="category">{{ news.category.name }}</span>
                         </div>
                         <div class="share-group">
                             <span>分享至:</span>
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                     <article class="article">
-                        蛋壳公寓通过官方微信号发布长文《蛋壳公寓致广大房东的真心话》，表示对于房东反映的单方面通知免租的情况，蛋壳确实存在部分员工与房东沟通时的问题。让本该有的协商，变成了一种“通知”，对此表达由衷歉意。蛋壳称，向房东寻求免租期爱心支持是用于对租客进行补贴，绝不会趁疫情大发横财，因此获得的任何额外收益，将全部返还房东。
+                        {{ news.content | safe}}
                     </article>
                 </div>
                 <div class="comment-wrapper">
