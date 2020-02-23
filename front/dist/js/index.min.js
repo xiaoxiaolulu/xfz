@@ -126,32 +126,6 @@ function Index() {
     var self = this;
     self.page = 2;
     self.category_id = 0;
-
-    template.defaults.imports.timeSince = function (dataValue) {
-        var date = new Date(dataValue);
-        var dates = date.getTime();
-        var nows = (new Date()).getTime();
-        var timestamp = (nows - dates) / 1000;
-        if (timestamp < 60) {
-            return '刚刚';
-        } else if (timestamp >= 60 && timestamp < 60 * 60) {
-            var minutes = parseInt(timestamp / 60);
-            return minutes + '分钟前';
-        } else if (timestamp >= 60 * 60 && timestamp < 60 * 60 * 24) {
-            var hours = parseInt(timestamp / 60 / 60);
-            return hours + '小时前';
-        } else if (timestamp >= 60 * 60 * 24 && timestamp < 60 * 60 * 24 * 30) {
-            var days = parseInt(timestamp / 60 / 60 / 24);
-            return days + '天前';
-        } else {
-            var year = date.getFullYear();
-            var month = date.getMonth();
-            var day = date.getDate();
-            var hour = date.getHours();
-            var minute = date.getMinutes();
-            return year + '/' + month + '/' + day + ' ' + hour + ':' + minute;
-        }
-    };
 }
 
 Index.prototype.listenLoadMoreEvent = function () {
@@ -195,7 +169,7 @@ Index.prototype.listenCategorySwitchEvent = function () {
                 'p': page
             },
             'success': function (result) {
-                if(result['code']===200){
+                if (result['code'] === 200) {
                     var newses = result['data'];
                     var tp1 = template("news-item", {'newses': newses});
                     var newsListGroup = $(".list-inner-group");

@@ -43,6 +43,9 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
 
+DEBUG_TOOLBAR_CONFIG = {
+    'JQUERY_URL': ''
+}
 # Application definition
 
 INSTALLED_APPS = [
