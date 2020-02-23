@@ -1,11 +1,11 @@
 from django.http import Http404
 from django.shortcuts import render
+from django.conf import settings
 from apps.core import Response
 from apps.news.forms import PublicCommentForm
 from apps.news.models import News, NewCategory, Comment
-from django.conf import settings
-
 from apps.news.serializers import NewsSerializers, CommentSerializer
+from apps.xfzauth.decorators import xfz_login_required
 
 
 def index(request):
@@ -46,6 +46,7 @@ def news_detail(request, news_id):
     return render(request, 'news/news_detail.html', context=context)
 
 
+@xfz_login_required
 def public_comment(request):
     form = PublicCommentForm(request.POST)
     if form.is_valid():

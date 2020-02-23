@@ -5,9 +5,10 @@ from django.views.generic import View
 from django.views.decorators.http import require_POST, require_GET
 from django.conf import settings
 import qiniu
-from apps.cms.forms import EditNewsCategoryForm, WriteNewsForm
+from apps.cms.forms import EditNewsCategoryForm, WriteNewsForm, AddBannerForm
 from apps.core import Response
-from apps.news.models import NewCategory, News
+from apps.news.models import NewCategory, News, Banner
+from apps.news.serializers import BannerSerializer
 
 
 def login_view(request):
@@ -108,3 +109,25 @@ def qntoken(request):
     q = qiniu.Auth(ak, sk)
     token = q.upload_token(bucket)
     return Response.response(data={'token': token})
+
+
+def banners(request):
+    return render(request, 'cms/banners.html')
+
+
+def banner_list(request):
+    banners = Banner.objects.all()
+    serialize = BannerSerializer(banners, many=True)
+    return Response.response(data=serialize.data)
+
+
+def add_banner(request):
+    form = AddBannerForm(request.POST)
+    if form.is_valid():
+        priority = form.cleaned_data.get('priority')
+        image_url = form.cleaned_data.get('image_url')
+        link_to = form.cleaned_data.get('link_to')
+        banner = Banner.objects.create(priority=priority, image_url=image_url, link_to=link_to)
+        return Response.response(data={'banner_id': banner.pk})
+    else:
+        return Response.response(message=form.get_errors())
