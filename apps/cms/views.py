@@ -5,7 +5,7 @@ from django.views.generic import View
 from django.views.decorators.http import require_POST, require_GET
 from django.conf import settings
 import qiniu
-from apps.cms.forms import EditNewsCategoryForm, WriteNewsForm, AddBannerForm
+from apps.cms.forms import EditNewsCategoryForm, WriteNewsForm, AddBannerForm, EditBannerForm
 from apps.core import Response
 from apps.news.models import NewCategory, News, Banner
 from apps.news.serializers import BannerSerializer
@@ -129,5 +129,25 @@ def add_banner(request):
         link_to = form.cleaned_data.get('link_to')
         banner = Banner.objects.create(priority=priority, image_url=image_url, link_to=link_to)
         return Response.response(data={'banner_id': banner.pk})
+    else:
+        return Response.response(message=form.get_errors())
+
+
+def delete_banner(request):
+    banner_id = request.POST.get('banner_id')
+    Banner.objects.filter(pk=banner_id).delete()
+    return Response.response()
+
+
+def edit_banner(request):
+
+    form = EditBannerForm(request.POST)
+    if form.is_valid():
+        pk = form.cleaned_data.get('pk')
+        priority = form.cleaned_data.get('priority')
+        image_url = form.cleaned_data.get('image_url')
+        link_to = form.cleaned_data.get('link_to')
+        Banner.objects.filter(pk=pk).update(priority=priority, image_url=image_url, link_to=link_to)
+        return Response.response()
     else:
         return Response.response(message=form.get_errors())

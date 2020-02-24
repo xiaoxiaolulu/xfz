@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.conf import settings
 from apps.core import Response
 from apps.news.forms import PublicCommentForm
-from apps.news.models import News, NewCategory, Comment
+from apps.news.models import News, NewCategory, Comment, Banner
 from apps.news.serializers import NewsSerializers, CommentSerializer
 from apps.xfzauth.decorators import xfz_login_required
 
@@ -14,7 +14,8 @@ def index(request):
     categories = NewCategory.objects.all()
     context = {
         'news': news,
-        'categories': categories
+        'categories': categories,
+        'banners': Banner.objects.all()
     }
     return render(request, 'news/index.html', context=context)
 

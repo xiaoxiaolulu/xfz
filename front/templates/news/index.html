@@ -1,8 +1,9 @@
 {% extends 'base/front_base.html' %}
 {% load news_filters %}
 {% block title %}
-    首页
+    小饭桌
 {% endblock %}
+
 {% block head %}
     <link rel="stylesheet" href="{% static 'css/news/index.min.css' %}">
     <script src="{% static 'arttemplate/template-web.js' %}"></script>
@@ -12,16 +13,16 @@
         {{ each newses news index }}
         <li>
             <div class="thumbnail-group">
-                <a href="/news/detail/{{ news.id }}"><img
-                        src="{{ news.thumbnail }}"
-                        alt=""></a>
+                <a href="/news/detail/{{ news.id }}/"><img src="{{ news.thumbnail }}" alt=""></a>
             </div>
             <div class="news-group">
-                <a href="/news/detail/{{ news.id }}"><p class="title">{{ news.title }}</p></a>
+                <p class="title">
+                    <a href="/news/detail/{{ news.id }}/">{{ news.title }}</a>
+                </p>
                 <p class="desc">{{ news.desc }}</p>
                 <p class="more">
                     <span class="category">{{ news.category.name }}</span>
-                    <span class="pub-time">{{ news.pub_time | timeSince}}</span>
+                    <span class="pub-time">{{ news.pub_time|timeSince}}</span>
                     <span class="author">{{ news.author.username }}</span>
                 </p>
             </div>
@@ -30,22 +31,16 @@
         {% endverbatim %}
     </script>
 {% endblock %}
+
 {% block main %}
     <div class="main">
         <div class="wrapper">
             <div class="main-content-wrapper">
                 <div class="banner-group" id="banner-group">
-                    <ul class="banner-ul" id="banner-url">
-                        <li>
-                            <a href="">
-                                <img src="https://static-image.xfz.cn/1581945649_702.png"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="https://static-image.xfz.cn/1582007884_508.jpeg"/>
-                            </a>
-                        </li>
+                    <ul class="banner-ul" id="banner-ul">
+                        {% for banner in banners %}
+                            <li><a href="{{ banner.link_to }}"><img src="{{ banner.image_url }}" alt=""></a></li>
+                        {% endfor %}
                     </ul>
                     <span class="arrow left-arrow">‹</span>
                     <span class="arrow right-arrow">›</span>
@@ -55,27 +50,26 @@
                 </div>
                 <div class="list-outer-group">
                     <ul class="list-tab">
-                        <li data-category="0" class="active"><a href="javascript: void(0)">最新资讯</a></li>
+                        <li data-category="0" class="active"><a href="javascript:void(0);">最新资讯</a></li>
                         {% for category in categories %}
-                            <li data-category="{{ category.pk }}"><a href="javascript: void(0)">{{ category.name }}</a>
-                            </li>
+                            <li data-category="{{ category.pk }}"><a href="#">{{ category.name }}</a></li>
                         {% endfor %}
                     </ul>
                     <ul class="list-inner-group">
-                        {% for news in news %}
+                        {% for news in newses %}
                             <li>
                                 <div class="thumbnail-group">
                                     <a href="{% url 'news:news_detail' news_id=news.pk %}"><img
-                                            src="{{ news.thumbnail }}"
-                                            alt=""></a>
+                                            src="{{ news.thumbnail }}" alt=""></a>
                                 </div>
                                 <div class="news-group">
-                                    <a href="{% url 'news:news_detail' news_id=news.pk %}"><p
-                                            class="title">{{ news.title }}</p></a>
+                                    <p class="title">
+                                        <a href="{% url 'news:news_detail' news_id=news.pk %}">{{ news.title }}</a>
+                                    </p>
                                     <p class="desc">{{ news.desc }}</p>
                                     <p class="more">
                                         <span class="category">{{ news.category.name }}</span>
-                                        <span class="pub-time">{{ news.pub_time | time_since }}</span>
+                                        <span class="pub-time">{{ news.pub_time|time_since }}</span>
                                         <span class="author">{{ news.author.username }}</span>
                                     </p>
                                 </div>
@@ -83,8 +77,9 @@
                         {% endfor %}
                     </ul>
                     <div class="load-more-group">
-                        <button class="load-more" id="load-more-btn">查看更多</button>
+                        <button id="load-more-btn" class="load-more">查看更多</button>
                     </div>
+
                 </div>
             </div>
             {% include 'common/sidebar.html' %}

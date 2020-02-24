@@ -29,47 +29,51 @@
     <div class="banner-list-group"></div>
     <script id="banner-item" type="text/html">
         {% verbatim %}
+        {{ if banner }}
+        <div class="box banner-item" data-banner-id="{{ banner.id }}">
+        {{ else }}
         <div class="box banner-item">
-            <div class="box-header">
-                {{ if banner }}
-                    <span class="priority">优先级: {{ banner.priority}}</span>
-                {{ else }}
-                    <span class="priority">优先级: 0</span>
-                {{ /if }}
-                <button class="btn btn-default btn-xs pull-right close-btn">
-                    <i class="fa fa-close"></i>
-                </button>
-            </div>
-            <div class="box-body">
-                <div class="thumbnail-group">
-                    <input type="file" class="image-input">
+        {{ /if }}
+                <div class="box-header">
                     {{ if banner }}
-                        <img class="thumbnail" src="{{ banner.image_url }}" alt="">
+                    <span class="priority">优先级: {{ banner.priority}}</span>
                     {{ else }}
-                        <img class="thumbnail" src="/static/images/banner.png" alt="">
+                    <span class="priority">优先级: 0</span>
                     {{ /if }}
+                    <button class="btn btn-default btn-xs pull-right close-btn">
+                        <i class="fa fa-close"></i>
+                    </button>
                 </div>
-                <div class="more-group">
-                    <div class="form-group">
+                <div class="box-body">
+                    <div class="thumbnail-group">
+                        <input type="file" class="image-input">
                         {{ if banner }}
+                        <img class="thumbnail" src="{{ banner.image_url }}" alt="">
+                        {{ else }}
+                        <img class="thumbnail" src="/static/images/banner.png" alt="">
+                        {{ /if }}
+                    </div>
+                    <div class="more-group">
+                        <div class="form-group">
+                            {{ if banner }}
                             <input type="number" class="form-control" name="priority" value="{{ banner.priority }}">
-                        {{ else }}
+                            {{ else }}
                             <input type="number" class="form-control" name="priority">
-                        {{ /if }}
-                    </div>
-                    <div class="form-group">
-                        {{ if banner }}
+                            {{ /if }}
+                        </div>
+                        <div class="form-group">
+                            {{ if banner }}
                             <input type="text" class="form-control" name="link_to" value="{{ banner.link_to }}">
-                        {{ else }}
+                            {{ else }}
                             <input type="text" class="form-control" name="link_to">
-                        {{ /if }}
+                            {{ /if }}
+                        </div>
                     </div>
                 </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary pull-right save-btn">保存</button>
+                </div>
             </div>
-            <div class="box-footer">
-                <button class="btn btn-primary pull-right save-btn">保存</button>
-            </div>
-        </div>
-        {% endverbatim %}
+            {% endverbatim %}
     </script>
 {% endblock %}
