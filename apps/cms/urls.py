@@ -20,5 +20,6 @@ urlpatterns = [
     path('news_list/', views.NewsList.as_view(), name='news_list'),
     path('edit_news/', views.EditNews.as_view(), name='edit_news'),
     path('delete_news/', views.delete_news, name='delete_news'),
+    path('pub_course/', views.PubCourse.as_view(), name='pub_course'),
     path('login/', views.login_view, name='login')
 ]

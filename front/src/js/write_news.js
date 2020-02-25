@@ -71,9 +71,9 @@ News.prototype.listenOploadFileEvent = function(){
             'contentType':false,
             'success':function (result) {
                 if(result['code'] === 200){
-                    var url = result['data']['url']
+                    var url = result['data']['url'];
                     var thumbnailInput = $('#thumbnail-form');
-                    thumbnailInput.val(url)
+                    thumbnailInput.val(url);
                 }
             }
         })

@@ -185,3 +185,9 @@ UEDITOR_CONFIG_PATH = os.path.join(BASE_DIR, 'front', 'dist', 'ueditor', 'config
 
 # 默认一次加载多少篇文章
 ONE_PAGE_NEWS_COUNT = 2
+
+# 百度云的配置
+# 控制台->用户中心->用户ID
+BAIDU_CLOUD_USER_ID = '5d02052122484a5c99cb1f8cca609870'
+# 点播VOD->全局设置->发布设置->安全设置->UserKey
+BAIDU_CLOUD_USER_KEY = 'cef53dd924ee4162'

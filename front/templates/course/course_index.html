@@ -22,81 +22,27 @@
                 </div>
                 <div class="wrapper">
                     <ul class="course-list">
-                        <li>
-                            <a href="">
+                        {% for course in courses %}
+                            <li>
+                            <a href="{% url 'course:course_detail' course_id=course.id %}">
                                 <div class="thumbnail-group">
-                                    <img src="https://static-image.xfz.cn/1563171954_878.png-course.list.small" alt=""
+                                    <img src="{{ course.cover_url }}" alt=""
                                          class="thumbnail">
                                 </div>
                                 <div class="course-info">
-                                    <p class="title">创业CEO如何避免技术决策错误</p>
-                                    <p class="author">Null</p>
+                                    <p class="title">{{ course.title }}</p>
+                                    <p class="author">{{ course.teacher.username }}</p>
                                     <p class="price-group">
-                                        <span class="free">免费</span>
+                                        {% if course.price > 0 %}
+                                            <span class="pay">{{ course.price }}</span>
+                                        {% else %}
+                                            <span class="free">免费</span>
+                                        {% endif %}
                                     </p>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="">
-                                <div class="thumbnail-group">
-                                    <img src="https://static-image.xfz.cn/1563171954_878.png-course.list.small" alt=""
-                                         class="thumbnail">
-                                </div>
-                                <div class="course-info">
-                                    <p class="title">创业CEO如何避免技术决策错误</p>
-                                    <p class="author">Null</p>
-                                    <p class="price-group">
-                                        <span class="free">免费</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="thumbnail-group">
-                                    <img src="https://static-image.xfz.cn/1563171954_878.png-course.list.small" alt=""
-                                         class="thumbnail">
-                                </div>
-                                <div class="course-info">
-                                    <p class="title">创业CEO如何避免技术决策错误</p>
-                                    <p class="author">Null</p>
-                                    <p class="price-group">
-                                        <span class="free">免费</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="thumbnail-group">
-                                    <img src="https://static-image.xfz.cn/1563171954_878.png-course.list.small" alt=""
-                                         class="thumbnail">
-                                </div>
-                                <div class="course-info">
-                                    <p class="title">创业CEO如何避免技术决策错误</p>
-                                    <p class="author">Null</p>
-                                    <p class="price-group">
-                                        <span class="free">免费</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="thumbnail-group">
-                                    <img src="https://static-image.xfz.cn/1563171954_878.png-course.list.small" alt=""
-                                         class="thumbnail">
-                                </div>
-                                <div class="course-info">
-                                    <p class="title">创业CEO如何避免技术决策错误</p>
-                                    <p class="author">Null</p>
-                                    <p class="price-group">
-                                        <span class="free">免费</span>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

@@ -9,8 +9,11 @@ from django.core.paginator import Paginator
 from django.conf import settings
 from urllib import parse
 import qiniu
-from apps.cms.forms import EditNewsCategoryForm, WriteNewsForm, AddBannerForm, EditBannerForm, EditNewsForm
+from apps.cms.forms import (
+    EditNewsCategoryForm, WriteNewsForm, AddBannerForm, EditBannerForm, EditNewsForm,
+    PubCourseForm)
 from apps.core import Response
+from apps.course.models import CourseCategory, Teacher, Course
 from apps.news.models import NewCategory, News, Banner
 from apps.news.serializers import BannerSerializer
 
@@ -276,7 +279,36 @@ class EditNews(View):
 
 @require_POST
 def delete_news(request):
-
     news_id = request.POST.get('news_id')
     News.objects.filter(pk=news_id).delete()
     return Response.response()
+
+
+class PubCourse(View):
+    def get(self, request):
+        context = {
+            'categories': CourseCategory.objects.all(),
+            'teachers': Teacher.objects.all()
+        }
+        return render(request, 'cms/pub_course.html', context=context)
+
+    def post(self, request):
+        form = PubCourseForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            category_id = form.cleaned_data.get('category_id')
+            video_url = form.cleaned_data.get('video_url')
+            cover_url = form.cleaned_data.get("cover_url")
+            price = form.cleaned_data.get('price')
+            duration = form.cleaned_data.get('duration')
+            profile = form.cleaned_data.get('profile')
+            teacher_id = form.cleaned_data.get('teacher_id')
+
+            category = CourseCategory.objects.get(pk=category_id)
+            teacher = Teacher.objects.get(pk=teacher_id)
+
+            Course.objects.create(title=title, video_url=video_url, cover_url=cover_url, price=price, duration=duration,
+                                  profile=profile, category=category, teacher=teacher)
+            return Response.response()
+        else:
+            return Response.params_error(message=form.get_errors())
