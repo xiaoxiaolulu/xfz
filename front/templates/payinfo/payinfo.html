@@ -1,4 +1,5 @@
 {% extends 'base/front_base.html' %}
+{% load payinfo_filters %}
 {% block title %}
     付费资讯
 {% endblock %}
@@ -15,33 +16,29 @@
                     </a>
                 </div>
                 <ul class="document-list">
-                    <li>
-                        <div class="category-group"
-                             style="background-image:url('http://xfz.cn/static/build/images/web-bp-pc.png');"></div>
-                        <div class="document-info">
-                            <p class="document-title">如何写好一份商业计划书</p>
-                            <p class="document-desc">一份好的商业计划书，是创业成功的开始！</p>
-                            <p class="document-price">￥8.8</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="category-group"
-                             style="background-image:url('http://xfz.cn/static/build/images/web-bp-pc.png');"></div>
-                        <div class="document-info">
-                            <p class="document-title">如何写好一份商业计划书</p>
-                            <p class="document-desc">一份好的商业计划书，是创业成功的开始！</p>
-                            <p class="document-price">￥8.8</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="category-group"
-                             style="background-image:url('http://xfz.cn/static/build/images/web-bp-pc.png');"></div>
-                        <div class="document-info">
-                            <p class="document-title">如何写好一份商业计划书</p>
-                            <p class="document-desc">一份好的商业计划书，是创业成功的开始！</p>
-                            <p class="document-price">￥8.8</p>
-                        </div>
-                    </li>
+                    {% for payinfo in payinfos %}
+                        <li>
+                            {% with payinfo|is_buyed:user as buyed %}
+                                {% if buyed %}
+                                    <a href="{% url 'payinfo:download' %}?payinfo_id={{ payinfo.pk }}">
+                                {% else %}
+                                    <a href="{% url 'payinfo:payinfo_order' %}?payinfo_id={{ payinfo.pk }}">
+                                {% endif %}
+                                    <div class="category-group"
+                                         style="background-image:url('http://xfz.cn/static/build/images/web-bp-pc.png');"></div>
+                                    <div class="document-info">
+                                        <p class="document-title">{{ payinfo.title }}</p>
+                                        <p class="document-desc">{{ payinfo.profile }}</p>
+                                        {% if buyed %}
+                                            <p class="document-price">点击下载</p>
+                                        {% esle %}
+                                            <p class="document-price">￥{{ payinfo.price }}</p>
+                                        {% endif %}
+                                    </div>
+                                </a>
+                            {% endwith %}
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
             {% include 'common/sidebar.html' %}

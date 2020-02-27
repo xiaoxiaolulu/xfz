@@ -28,7 +28,7 @@
             <ul class="nav">
                 <li class="active"><a href="/">创业资讯</a></li>
                 <li><a href="{% url 'course:course_index' %}">创业课堂</a></li>
-                <li><a href="/">付费资讯</a></li>
+                <li><a href="{% url 'payinfo:index' %}">付费资讯</a></li>
                 <li><a href="/">搜索</a></li>
             </ul>
 
@@ -88,6 +88,7 @@
     </footer>
 
     <div class="mask-wrapper">
+        {% csrf_token %}
         <div class="auth-wrapper">
             <div class="close-wrapper">
                 <span class="close-btn icon-baseline-close-px iconfont"></span>

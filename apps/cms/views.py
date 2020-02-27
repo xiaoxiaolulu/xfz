@@ -16,6 +16,7 @@ from apps.core import Response
 from apps.course.models import CourseCategory, Teacher, Course
 from apps.news.models import NewCategory, News, Banner
 from apps.news.serializers import BannerSerializer
+from django.http.request import HttpRequest
 
 
 def login_view(request):

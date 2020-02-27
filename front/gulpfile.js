@@ -3,7 +3,7 @@ var cssnano = require("gulp-cssnano");
 var rename = require("gulp-rename");
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
-var cache = require("gulp-cache");
+// var cache = require("gulp-cache");
 var imagemin = require("gulp-imagemin");
 var bs = require("browser-sync").create();
 var sass = require("gulp-sass-china");
@@ -24,7 +24,7 @@ var path  = {
 // 处理html任务
 gulp.task("html", function () {
     gulp.src(path.html + '*.html')
-        .pipe(bs.stream)
+        .pipe(bs.stream);
 });
 
 // 定义css任务
@@ -51,9 +51,9 @@ gulp.task("js", function () {
 // 定义处理图片文件任务
 gulp.task("images", function () {
     gulp.src(path.images + '*.*')
-        .pipe(cache(imagemin()))
+        // .pipe(cache(imagemin()))
         .pipe(gulp.dest(path.images_dist))
-        .pipe(bs.stream)
+        .pipe(bs.stream);
 });
 
 // 监听修改文件任务

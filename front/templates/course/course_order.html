@@ -129,23 +129,23 @@
                 <tr>
                     <td align="left">
                         <a href="#">
-                            <img class="thumbnail" src="{{ course.cover_url }}" alt="">
-                            <span class="title">{{ course.title }}</span>
+                            <img class="thumbnail" src="{{ goods.thumbnail }}" alt="">
+                            <span class="title">{{ goods.title }}</span>
                         </a>
                     </td>
-                    <td>{{ course.price }}</td>
-                    <td>{{ course.price }}</td>
+                    <td>{{ goods.price }}</td>
+                    <td>{{ goods.price }}</td>
                 </tr>
             </tbody>
         </table>
             <form action="https://pay.bbbapi.com/" method="post" id="pay-form">
                 <input type="hidden" name="uid" value="49dc532695baa99e16e01bc0">
-                <input type="hidden" name="price" value="{{ course.price }}">
+                <input type="hidden" name="price" value="{{ goods.price }}">
                 <input type="hidden" name="notify_url" value="{{ notify_url }}">
                 <input type="hidden" name="return_url" value="{{ return_url }}">
                 <input type="hidden" name="orderid" value="{{ order.pk }}">
                 <input type="hidden" name="orderuid" value="{{ request.user.pk }}">
-                <input type="hidden" name="goodsname" value="{{ course.title }}">
+                <input type="hidden" name="goodsname" value="{{ goods.title }}">
                 <input type="hidden" name="key" value="">
             <div class="pay-way">
                 <label for="istype-wx">

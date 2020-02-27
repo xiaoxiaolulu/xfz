@@ -1,4 +1,5 @@
 from django.db import models
+from shortuuidfield import ShortUUIDField
 
 
 class CourseCategory(models.Model):
@@ -25,3 +26,14 @@ class Course(models.Model):
     duration = models.IntegerField()
     profile = models.TextField()
     pub_time = models.DateTimeField(auto_now_add=True)
+
+
+class CourseOrder(models.Model):
+
+    uuid = ShortUUIDField(primary_key=True)
+    course = models.ForeignKey('Course', on_delete=models.DO_NOTHING)
+    buyer = models.ForeignKey('xfzauth.User', on_delete=models.DO_NOTHING)
+    amount = models.FloatField(default=0)
+    pub_time = models.DateTimeField(auto_now_add=True)
+    istype = models.SmallIntegerField(default=0)
+    status = models.SmallIntegerField(default=1)

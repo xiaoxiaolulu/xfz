@@ -38,10 +38,10 @@
                             <!-- <span class="price pay">￥49.0</span>
                             <a href="#" class="buy-btn">立即购买</a> -->
                             {% if course.price > 0 %}
-{#                                {% if not buyed %}#}
+                                {% if not buyed %}
                                     <span class="price pay">￥{{ course.price }}</span>
                                     <a href="{% url 'course:course_order' course_id=course.pk %}" class="buy-btn">立即购买</a>
-{#                                {% endif %}#}
+                                {% endif %}
                             {% else %}
                                 <span class="price free">免费</span>
                             {% endif %}
