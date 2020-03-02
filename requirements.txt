@@ -10,7 +10,7 @@ Automat==0.8.0
 bcrypt==3.1.7
 beautifulsoup4==4.8.2
 binaryornot==0.4.4
-bleach==3.1.0
+bleach==3.1.1
 bs4==0.0.1
 certifi==2019.11.28
 cffi==1.13.0
