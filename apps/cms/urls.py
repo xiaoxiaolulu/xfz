@@ -21,5 +21,7 @@ urlpatterns = [
     path('edit_news/', views.EditNews.as_view(), name='edit_news'),
     path('delete_news/', views.delete_news, name='delete_news'),
     path('pub_course/', views.PubCourse.as_view(), name='pub_course'),
+    path('staffs/', views.staff, name='staffs'),
+    path('add_staffs/', views.AddStaff.as_view(), name='add_staffs'),
     path('login/', views.login_view, name='login')
 ]

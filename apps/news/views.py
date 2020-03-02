@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render
 from django.conf import settings
@@ -62,4 +63,9 @@ def public_comment(request):
 
 
 def search(request):
-    return render(request, 'search/search.html')
+    q = request.GET.get('q')
+    context = {}
+    if q:
+        newses = News.objects.filter(Q(title__icontains=q) | Q(content__icontains=q))
+        context['newses'] = newses
+    return render(request, 'search/search.html', context=context)

@@ -1,7 +1,9 @@
 import os
 from datetime import datetime
-from django.shortcuts import render
+from django.contrib.auth.models import Group
+from django.shortcuts import render, redirect, reverse
 from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 from django.utils.timezone import make_aware
 from django.views.generic import View
 from django.views.decorators.http import require_POST, require_GET
@@ -10,10 +12,21 @@ from django.conf import settings
 from urllib import parse
 import qiniu
 from apps.cms.forms import (
-    EditNewsCategoryForm, WriteNewsForm, AddBannerForm, EditBannerForm, EditNewsForm,
-    PubCourseForm)
+    EditNewsCategoryForm,
+    WriteNewsForm,
+    AddBannerForm,
+    EditBannerForm,
+    EditNewsForm,
+    PubCourseForm
+)
 from apps.core import Response
-from apps.course.models import CourseCategory, Teacher, Course
+from apps.course.models import (
+    CourseCategory,
+    Teacher,
+    Course
+)
+from apps.xfzauth.decorators import xfz_superuser_required
+from apps.xfzauth.models import User
 from apps.news.models import NewCategory, News, Banner
 from apps.news.serializers import BannerSerializer
 from django.http.request import HttpRequest
@@ -313,3 +326,32 @@ class PubCourse(View):
             return Response.response()
         else:
             return Response.params_error(message=form.get_errors())
+
+
+def staff(request):
+    staffs = User.objects.filter(is_staff=True)
+    context = {
+        'staffs': staffs
+    }
+    return render(request, 'cms/staffs.html', context=context)
+
+
+@method_decorator(xfz_superuser_required, name='dispatch')
+class AddStaff(View):
+
+    def get(self, request):
+        groups = Group.objects.all()
+        context = {
+            'groups': groups
+        }
+        return render(request, 'cms/add_staff.html', context=context)
+
+    def post(self, request):
+        telephone = request.POST.get('telephone')
+        user = User.objects.filter(telephone=telephone).first()
+        user.is_staff = True
+        group_ids = request.POST.getlist('groups')
+        groups = Group.objects.filter(pk__in=group_ids)
+        user.groups.set(groups)
+        user.save()
+        return redirect(reverse('cms:staffs'))

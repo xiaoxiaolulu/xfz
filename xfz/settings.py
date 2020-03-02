@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ka@fy6n57hz=ov0tt+bh@06s2i9g$%$2vc^dm2ja6043!n@^6o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '106.54.238.180']
 
 INTERNAL_IPS = ['127.0.0.1']
 
@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'apps.xfzauth',
     'apps.cms',
     'apps.news',
-    'apps.ueditor'
+    'apps.ueditor',
+    # 'haystack'
 ]
 
 MIDDLEWARE = [
@@ -161,6 +162,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front', 'dist')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_dist')
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -191,3 +194,11 @@ ONE_PAGE_NEWS_COUNT = 2
 BAIDU_CLOUD_USER_ID = '5d02052122484a5c99cb1f8cca609870'
 # 点播VOD->全局设置->发布设置->安全设置->UserKey
 BAIDU_CLOUD_USER_KEY = 'cef53dd924ee4162'
+
+# # haystack 全文搜索
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+#         'PATH': os.path.join(BASE_DIR, 'whoosh_index')
+#     }
+# }
