@@ -87,7 +87,7 @@ python-jenkins==1.6.0
 python-memcached==1.59
 pytz==2019.3
 pywin32==223
-PyYAML==5.2
+PyYAML==5.4
 qiniu==7.2.6
 redis==3.3.11
 requests==2.22.0
