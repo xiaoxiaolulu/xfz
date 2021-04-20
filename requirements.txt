@@ -66,7 +66,7 @@ pipreqs==0.4.10
 pluggy==0.13.1
 poyo==0.5.0
 pre-commit==1.20.0
-py==1.8.1
+py==1.10.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.7
 pycosat==0.6.3
