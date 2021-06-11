@@ -120,7 +120,7 @@ urllib3==1.25.7
 virtualenv==16.7.9
 w3lib==1.21.0
 webencodings==0.5.1
-websockets==8.1
+websockets==9.1
 Werkzeug==1.0.0
 whichcraft==0.6.1
 win-inet-pton==1.1.0
