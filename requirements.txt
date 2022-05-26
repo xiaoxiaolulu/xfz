@@ -115,7 +115,7 @@ tornado==6.0.3
 tox==3.14.3
 tqdm==4.36.1
 translate==3.5.0
-Twisted==19.10.0
+Twisted==22.4.0
 urllib3==1.25.7
 virtualenv==16.7.9
 w3lib==1.21.0
