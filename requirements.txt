@@ -21,7 +21,7 @@ colorama==0.4.3
 conda==4.8.0
 conda-package-handling==1.6.0
 constantly==15.1.0
-cookiecutter==1.6.0
+cookiecutter==2.1.1
 cryptography==2.8
 cssselect==1.1.0
 ddt==1.2.2
